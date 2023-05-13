@@ -1,0 +1,41 @@
+<canvas width="600" height="400"></canvas>
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,700,400);
+    let arrayColoresCirculos = ["blue","green","red"];
+    let indiceColorActual = 0;
+
+    function detectarClick (evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+        alert("Haz dado click en la pantalla, en coordenadas: X:" + x + " y " + y);
+        console.log(evento);
+    }
+
+    function dibujarCirculo (evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+        pincel.fillStyle = arrayColoresCirculos [indiceColorActual];
+        pincel.beginPath();
+        pincel.arc(x,y,22,0,2*3.14);
+        pincel.fill();
+        console.log("Coordenadas del círculo: " + x , y);
+    }
+
+    function cambiarColorCirculo () {
+        if (indiceColorActual < arrayColoresCirculos.length -1) {
+            indiceColorActual++;
+        } else {
+            indiceColorActual = 0;
+        }
+        alert(indiceColorActual + " Color activo: " + arrayColoresCirculos[indiceColorActual]);
+        return false;
+        
+    }
+
+    //pantalla.onclick = detectarClick;
+    pantalla.onclick = dibujarCirculo;
+    pantalla.oncontextmenu = cambiarColorCirculo;
+</script>

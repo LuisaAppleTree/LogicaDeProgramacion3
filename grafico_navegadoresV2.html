@@ -1,0 +1,52 @@
+<canvas width="2100" height="1200"></canvas>
+<script>
+    function dibujarRectangulos (x,y,base,altura,color) {
+        let pantalla = document.querySelector("canvas");
+        let pincel = pantalla.getContext("2d");
+        pincel.fillStyle = color;
+        pincel.fillRect(x,y,base,altura);
+        pincel.strokeStyle = "black";
+        pincel.strokeRect(x,y,base,altura);
+    }
+
+    function dibujarTexto (x,y,texto) {
+        let pantalla = document.querySelector("canvas");
+        let pincel = pantalla.getContext("2d");
+        pincel.font = "50px Georgia";
+        pincel.fillStyle = "black";
+        pincel.fillText(x,y,texto);
+    }
+
+    function dibujarBarras (x,y,añoArreglo,color,texto) {
+        dibujarTexto(texto,x,y - 20);
+        let alturaInicialCuadrito = 0;
+            for (i = 0; i < añoArreglo.length; i++) {
+                let alturaSeccionCuadrito = añoArreglo[i];
+                dibujarRectangulos(x,y + alturaInicialCuadrito,150,alturaSeccionCuadrito,color[i]);
+                alturaInicialCuadrito = alturaInicialCuadrito + alturaSeccionCuadrito;
+            }
+    }
+
+    let año2009 = [33,94,82,81,60];
+    let año2019 = [92,68,84,49,57];
+    let coloresNavegadores = ["blue", "green", "yellow","red","gray"];
+
+    dibujarBarras(150,150,año2009,coloresNavegadores,"Año 2009");
+    dibujarBarras(550,150,año2019,coloresNavegadores,"Año 2019");
+
+    let navegadorNombre = ["Chrome", "Mozilla Firefox", "Internet Explorer / Edge", "Safari", "Otros"];
+
+    function escribirTextoDescriptivo (x,y,texto,navegadorNombre) {
+        dibujarTexto(texto,20,y + 380,navegadorNombre);
+        dibujarTexto ("Navegadores",x,y + 300);
+    }
+    escribirTextoDescriptivo(20,300,navegadorNombre);
+
+
+/* pasos:
+1. crear función para dibujar rectángulos 
+2. crear función para crear texto 
+3. función para graficar cuadros según datos 
+4. crear datos de ambos años 
+5. crear array para los colores.*/
+</script>

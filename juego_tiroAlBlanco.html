@@ -1,0 +1,62 @@
+<canvas width="600" height="400"></canvas>
+<script>
+    let pantalla = document.querySelector ("canvas");
+    let pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "lightblue";
+    pincel.fillRect(0,0,600,400);
+
+    function dibujarTiroAlBlanco(x,y,radio,color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();
+    }
+
+    function limpiarPantalla () {
+        pincel.clearRect(0,0,600,400);
+    }
+
+    let x;
+    let y;
+    let xClick;
+    let yClick;
+
+    function moverDiana() {
+    let radio = 10;
+    x = Math.floor(Math.random()*600);
+    y = Math.floor(Math.random()*400);
+        limpiarPantalla();
+        pincel.fillStyle = "lightblue";
+        pincel.fillRect(0,0,600,400);
+        dibujarTiroAlBlanco(x,y,radio + 20,"red");
+        dibujarTiroAlBlanco(x,y,radio + 10,"white");
+        dibujarTiroAlBlanco(x,y,radio,"red");
+    }
+
+    function disparar (evento) {
+        xClick = evento.pageX - pantalla.offsetLeft;
+        yClick = evento.pageY - pantalla.offsetTop;
+        alert("Haz dado click en las coordenadas " + xClick + " , " + yClick);
+        alert("Mientras que tu diana esta en el rango de: " + x + " , " + y);
+        if ((xClick < x + 10) && 
+            (xClick > x - 10) && 
+            (yClick < y + 10) && 
+            (yClick > y - 10)){
+            alert("Le atinaste al blanco");
+        } else {
+            alert("No le atinaste, sigue intentando.");
+        }
+    }
+
+    setInterval(moverDiana,3000);
+    pantalla.onclick = disparar;
+</script>
+
+
+
+
+
+
+
+
+

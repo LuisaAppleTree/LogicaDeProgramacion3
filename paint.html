@@ -1,0 +1,94 @@
+<canvas width="1080" height="720"></canvas>
+<h3>Grosor del trazo</h3>
+<input type="number" value="10" min="1" max="100">
+<script>
+    var pantalla = document.querySelector('canvas');
+    var pincel = pantalla.getContext('2d');
+    pincel.fillStyle = 'MistyRose';
+    pincel.fillRect(0, 0, 1080, 720);
+    let size = 10;
+    let color;
+
+    function dibujar(x, y, color) {
+        pincel.fillStyle = color;
+        pincel.fillRect(x, y, 50, 50);
+    }
+
+    dibujar(0, 0, "Salmon");
+    dibujar(50, 0, "Crimson");
+    dibujar(100, 0, "HotPink");
+    dibujar(150, 0, "PaleVioletRed");
+    dibujar(200, 0, "OrangeRed");
+    dibujar(250, 0, "Orange");
+    dibujar(300, 0, "Moccasin");
+    dibujar(350, 0, "Khaki");
+    dibujar(400, 0, "Lavender");
+    dibujar(450, 0, "MediumOrchid");
+    dibujar(500, 0, "MediumSlateBlue");
+    dibujar(550, 0, "PaleGreen");
+    dibujar(600, 0, "DarkSeaGreen");
+    dibujar(650, 0, "SteelBlue");
+    dibujar(700, 0, "LightSkyBlue");
+    dibujar(750, 0, "DarkBlue");
+    dibujar(800, 0, "Goldenrod");
+    dibujar(850, 0, "Maroon");
+    dibujar(900, 0, "Chocolate");
+    dibujar(950, 0, "Gainsboro");
+    dibujar(1000, 0, "Black");
+
+    function cambiarColor(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+        if ((x < 50) && (y <= 50)) { color = "Salmon"; }
+        if ((x > 50) && (x < 100) && (y <= 50)) { color = "Crimson"; }
+        if ((x > 100) && (x < 150) && (y <= 50)) { color = "HotPink"; }
+        if ((x > 150) && (x < 200) && (y <= 50)) { color = "PaleVioletRed"; }
+        if ((x > 200) && (x < 250) && (y <= 50)) { color = "OrangeRed"; }
+        if ((x > 250) && (x < 300) && (y <= 50)) { color = "Orange"; }
+        if ((x > 300) && (x < 350) && (y <= 50)) { color = "Moccasin"; }
+        if ((x > 350) && (x < 400) && (y <= 50)) { color = "Khaki"; }
+        if ((x > 400) && (x < 450) && (y <= 50)) { color = "Lavender"; }
+        if ((x > 450) && (x < 500) && (y <= 50)) { color = "MediumOrchid"; }
+        if ((x > 500) && (x < 550) && (y <= 50)) { color = "MediumSlateBlue"; }
+        if ((x > 550) && (x < 600) && (y <= 50)) { color = "PaleGreen"; }
+        if ((x > 600) && (x < 650) && (y <= 50)) { color = "DarkSeaGreen"; }
+        if ((x > 650) && (x < 700) && (y <= 50)) { color = "SteelBlue"; }
+        if ((x > 700) && (x < 750) && (y <= 50)) { color = "LightSkyBlue"; }
+        if ((x > 750) && (x < 800) && (y <= 50)) { color = "DarkBlue"; }
+        if ((x > 800) && (x < 850) && (y <= 50)) { color = "Goldenrod"; }
+        if ((x > 850) && (x < 900) && (y <= 50)) { color = "Maroon"; }
+        if ((x > 900) && (x < 950) && (y <= 50)) { color = "Chocolate"; }
+        if ((x > 950) && (x < 1000) && (y <= 50)) { color = "Gainsboro"; }
+        if ((x > 1000) && (x < 1050) && (y <= 50)) { color = "Black"; }
+    }
+
+    pantalla.onclick = cambiarColor;
+
+    var puedoDibujar = false;
+
+    function dibujarRectangulo(evento) {
+        if (puedoDibujar) {
+            var x = evento.pageX - pantalla.offsetLeft;
+            var y = evento.pageY - pantalla.offsetTop;
+            size = document.querySelector('input').value;
+            if((x <= 1050) && (y <= 50)) {
+                deshabilitarDibujar();
+            } else {
+            pincel.fillStyle = color;
+            pincel.fillRect(x, y, size, size);
+            }
+        }
+    }
+
+    pantalla.onmousemove = dibujarRectangulo;
+
+    function habilitarDibujar() {
+        puedoDibujar = true;
+    }
+    function deshabilitarDibujar() {
+        puedoDibujar = false;
+    }
+
+    pantalla.onmousedown = habilitarDibujar;
+    pantalla.onmouseup = deshabilitarDibujar;
+</script>

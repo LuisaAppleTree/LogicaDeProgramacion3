@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+<script>
+    function saltarLinea () {
+        document.write ("<br><br><br><hr>");
+    }
+    function imprimir (mensaje){
+        document.write(mensaje);
+        saltarLinea();
+    }
+
+    imprimir("Ejercicio trabajo:");
+    let texto = prompt("Ingresa la palabra que buscas: ");
+
+    let array1 = ["perro", "azul", "feliz", "pequeño"];
+    let array2 = ["gato", "verde", "triste", "grande"];
+    let array3 = ["conejo", "amarillo", "curioso", "gigante"];
+    function encontrarTexto (texto) {
+        let textoIngresado = texto;
+        for (let i= 0; i < array1.length; i++) {
+            if(textoIngresado == array1[i]){
+                alert ("Se encontró la palabra " + textoIngresado + " en el arreglo: 1 , en el índice " + array1[i]);
+                break;
+            } else if (textoIngresado == array2[i]){
+                alert ("Se encontró la palabra " + textoIngresado + " en el arreglo: 2 , en el índice " + array2[i]);
+                break;
+            } else if(textoIngresado == array3[i]){
+                alert ("Se encontró la palabra " + textoIngresado + " en el arreglo: 3 , en el índice " + array3[i]);
+                break;
+            } else {
+                alert("palabra no encontrada.");
+                break;
+            }   
+        }     
+    }
+    encontrarTexto(texto); 
+</script>
